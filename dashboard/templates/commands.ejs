@@ -1,0 +1,52 @@
+<%- include('blocks/header', {bot, user, path}) %>
+<%
+const help = {};
+	bot.commands.forEach((command) => {
+		const cat = command.conf.kategori;
+		if (!help.hasOwnProperty(cat)) help[cat] = [];
+		help[cat].push(command);
+	});
+	String.prototype.capitalize = function() {
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	}
+%>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<h2 style="color: #fffff;">Komutlar</h2>
+	</div>
+	<% for (const kategori in help) { %>
+		<br>
+		<div class="row justify-content-md-center">
+			<h3 style="color: #ffffff;"><%= kategori.capitalize().replace("Yapımcı", "Bot Geliştiricisi").replace("War", "Savaş") %> Komutları</h3>
+		</div>
+		<br>
+		<div class="card-columns" style="background-color: #ffe600; padding: 20px; border-radius: 40px;">
+			<% for (const command of help[kategori]) { %>
+				<div class="card" style="background-color: #000000; margin: 3px; border-radius: 40px;">
+					<h3 class="card-header" style="color: #000000;"><center><a href="#" data-toggle="modal" data-target="#<%= `${command.help.name}` %>Modal" style="text-decoration: none;"><%= command.help.name %></a></center></h3>
+					<div class="card-block">
+						<p class="card-text"><center><%= command.help.description %></center></p>
+           <h6 class="card-subtitle text-muted" align="right"><center>Gerekli Yetki: <%= command.conf.permLevel %></center><br /></h6>
+					</div>
+				</div>
+				<div id="<%= `${command.help.name}` %>Modal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header btn-info disabled" style="background-color: #000000; border: 0px;">
+								<h4 class="modal-title""><%= command.help.name %></h4>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+							</div>
+							<div class="modal-body" style="background-color: #000000; border: 0px;">
+								<p><b>Örnek Kullanım:</b> <%= bot.config.prefix %><%= command.help.usage %></p>
+								<p><b>Alternatif Kullanımlar:</b> <%= `${command.conf.aliases.join(', ') || 'Bulunmuyor'}` %></p>
+								<b>Gerekli Yetki:</b> <%= command.conf.permLevel %></p>
+							</div>
+							<div class="modal-footer" style="background-color: #000000; border: 0px;"><button type="button" class="btn btn-outline-danger" data-dismiss="modal">Kapat</button></div>
+						</div>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	<% } %>
+</div>
+<% include ./blocks/footer %>

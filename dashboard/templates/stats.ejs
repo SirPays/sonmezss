@@ -1,0 +1,68 @@
+<%- include('blocks/header', {bot, user, path}) %>
+<!--	var helpers = ''
+	for (var i = 0; i < bot.config.helper.length; i++) {
+		var şuanki = bot.users.get(bot.config.helper[i]).tag;
+		if (i === 0) {
+			helpers += şuanki
+		}
+		else if (i === bot.config.helper.length - 1) {
+			helpers += " ve " + şuanki;
+		} else {
+			helpers += ", " + şuanki
+		}
+	}
+%> -->
+<div class="container">
+	<div class="row justify-content-md-center">
+		<h2 style="color: #000000;">Anlık İstatistikler</h2>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; border-radius: 40px 40px 0px 0px; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-user" aria-hidden="true"></i> Bot Geliştiricisi:</div>
+		<div class="col-5 text-nowrap"><strong><%= bot.users.get(bot.config.ownerID).tag %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-server" aria-hidden="true"></i> İşlemci  [<%= stats.cpuc %>]:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.cpu %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-tasks" aria-hidden="true"></i> İşlemci Kullanımı:</div>
+		<div class="col-5 text-nowrap"><strong>%<%= stats.cpuu %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-server" aria-hidden="true"></i> İşletim Sistemi:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.osm %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-server" aria-hidden="true"></i> Sunucu Sayısı:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.servers %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-clock-o" aria-hidden="true"></i> Açık Kalma Süresi:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.uptime %> boyunca kesintisiz çalışıyor...</strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Kullanıcı Sayısı:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.members %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-tasks" aria-hidden="true"></i> Hafıza Kullanımı:</div>
+		<div class="col-5 text-nowrap"><strong><%= Math.round(stats.memoryUsage) %> MB / <%= Math.round(stats.totalMemory) %> GB</strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-hashtag" aria-hidden="true"></i> Kanal Sayısı:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.channels %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Bot Sürümü:</div>
+		<div class="col-5 text-nowrap"><strong>v<%= stats.version %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Discord.JS Sürümü:</div>
+		<div class="col-5 text-nowrap"><strong>v<%= stats.dVersion %></strong></div>
+	</div>
+	<div class="row justify-content-md-center" style="background-color: #0DAED6; color: #ffffff; border-radius: 0px 0px 40px 40px; font-size: 20px;">
+		<div class="col-5 text-nowrap"><i class="fa fa-fw fa-cogs" aria-hidden="true"></i> Node.JS Sürümü:</div>
+		<div class="col-5 text-nowrap"><strong><%= stats.nVersion %></strong></div>
+	</div>
+</div>
+<% include ./blocks/footer %>

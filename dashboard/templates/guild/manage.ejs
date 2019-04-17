@@ -1,0 +1,31 @@
+<%- include('../blocks/header', {bot, user, path}) %>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<h2 style="color: #fffff;">Sunucu Yönetimi</h2>
+	</div>
+	<div class="row">
+		<div class="col col-4">
+			<%- include('../blocks/guild-card', {guild}) %>
+		</div>
+		<div class="col">
+			<%- include('../blocks/guild-nav.ejs', {active: "manage", guild}) %>
+			<form method="post">
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" style="padding: 0; background-color: #0DAED6;">
+						<div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%; margin: 0 !important;">
+						<div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%; margin: 0 !important;">
+						<div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width: 100%; margin: 0 !important;">
+							<div class="input-group-addon" style="width: 150px; text-align: center; margin: 5.5px; color: #ffffff; font-size: 15px;"></div>
+						</div>
+					
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<% include ../blocks/guild-modals %>
+<script type="text/javascript">
+	var ts = parseInt($('#guildCreate').text());
+	$('#guildCreate').html(`<strong>Created:</strong>: ${moment(ts).format('MMMM Do YYYY (h:mm a)')}`);
+</script>
+<% include ../blocks/footer %>
